@@ -1,0 +1,19 @@
+{
+  "name": "news-app-backend",
+  "version": "1.0.0",
+  "description": "backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hektor-Byfors/news-app-backend.git"
+  },
+  "author": "Hektor Byfors",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hektor-Byfors/news-app-backend/issues"
+  },
+  "homepage": "https://github.com/Hektor-Byfors/news-app-backend#readme"
+}
