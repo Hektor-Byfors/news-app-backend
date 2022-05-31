@@ -5,13 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+        div {
+            margin: 50px 0 0 0;
+        }
         h3 {
             font-family: sans-serif;
+        }
+        p {
+            margin-bottom: 5px;
+        }
+        .disabled {
+            display: none;
         }
     </style>
     <title>Admin page</title>
 </head>
 <body>
-    <h3>Users:</h3>
+    <div id="container">
+        <h3>Admin login:</h3>
+        <p>Password</p>
+        <input id="password" type="password">
+        <button onclick="login()">login</button>
+    </div>
+    <div id="container2" class="disabled">
+        <a href="/all-users"><button>All users</button></a>
+        <a href="/subscribed-users"><button>All subscribed users</button></a>
+    </div>
+    <script>
+        let password = document.getElementById("password");
+        let container = document.getElementById("container");
+        let container2 = document.getElementById("container2")
+        const login = () => {
+            if(password.value === "admin") {
+                container.classList.add("disabled");
+                container2.classList.remove("disabled");
+            }
+        }
+    </script>
 </body>
 </html>
