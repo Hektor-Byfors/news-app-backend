@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        div {
+            border-bottom: 2px solid black;
+            border-left: 2px solid black;
+            width: 400px;
+            padding: 10px;
+        }
+        h4 {
+            margin: 10px 0 0;
+            color: red;
+        }
+        p {
+            margin: 2px 0;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <h2>Subscribed emails:</h2>
+    <% if (result.length > 0) { %>
+        <% result.forEach(user => { %>
+            <% if (user.newsLetterSub === true) { %>
+                <div class="user">
+                    <h4>email:</h4>
+                    <p><%= user.email %></p>
+                </div>
+            <% } %>
+        <% }) %>
+    <% } %>
+</body>
+</html>
