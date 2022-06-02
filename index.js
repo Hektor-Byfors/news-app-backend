@@ -5,7 +5,7 @@ const User = require("./models/user.js");
 const app = express();
 app.set("view engine", "ejs");
 
-const port = 3000;
+const port = 3001;
 const dbURI = "mongodb+srv://nodeDB:Nlfr7lsygbMhdcBb@nodedb.0wfhner.mongodb.net/nodeNewsLetter?retryWrites=true&w=majority"
 
 mongoose.connect(dbURI)
@@ -33,26 +33,14 @@ app.get("/add-user", (req, res) => {
         });
 });
 
-app.get("/all-users", (req, res) => {
-    User.find()
-        .then((result) => {
-            res.render("users", { result });
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-});
-
-app.get("/subscribed-users", (req, res) => {
+app.get("/", (req, res) => {
+    //res.render("index");
     User.find()
     .then((result) => {
-        res.render("subscribers", { result });
+        res.render("index", { result });
     })
     .catch((err) => {
         console.log(err);
+        res.send("error has occurred" + err)
     })
-})
-
-app.get("/", (req, res) => {
-    res.render("index");
 });

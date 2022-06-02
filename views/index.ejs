@@ -11,17 +11,36 @@
             display: flex;
             justify-content: center;
         }
-        div {
+        #container {
             margin: 50px 0 0 0;
         }
         h3 {
             font-family: sans-serif;
         }
-        p {
+        .password-p {
             margin-bottom: 5px;
         }
         .disabled {
             display: none;
+        }
+        .container {
+            margin: 20px;
+        }
+        .container2 {
+            display: flex;
+            justify-content: center;
+        }
+        .user {
+            border-bottom: 2px solid black;
+            border-left: 2px solid black;
+            width: 400px;
+            padding: 10px;
+        }
+        h4 {
+            margin: 10px 0 0;
+        }
+        p {
+            margin: 2px 0;
         }
     </style>
     <title>Admin page</title>
@@ -29,13 +48,43 @@
 <body>
     <div id="container">
         <h3>Admin login:</h3>
-        <p>Password</p>
+        <p class="password-p">Password</p>
         <input id="password" type="password">
         <button onclick="login()">login</button>
     </div>
     <div id="container2" class="disabled">
-        <a href="/all-users"><button>All users</button></a>
-        <a href="/subscribed-users"><button>All subscribed users</button></a>
+        <div class="container">
+            <h2>Users:</h2>
+            <% if (result.length > 0) { %>
+                <% result.forEach(user => { %>
+                    <div class="user">
+                        <h4>email:</h4>
+                        <p><%= user.email %></p>
+                        <h4>password:</h4>
+                        <p><%= user.password %></p>
+                        <h4>subscribed: </h4>
+                        <% if (user.newsLetterSub) {%>
+                                <p style="color: rgb(0, 177, 0);">Yes</p>
+                            <% } else { %>
+                                <p style="color: red;">No</p>
+                            <% } %>
+                    </div>
+                <% }) %>
+            <% } %>
+        </div>
+        <div class="container">
+            <h2>Subscribed emails:</h2>
+            <% if (result.length > 0) { %>
+                <% result.forEach(user => { %>
+                    <% if (user.newsLetterSub === true) { %>
+                        <div class="user">
+                            <h4>email:</h4>
+                            <p><%= user.email %></p>
+                        </div>
+                    <% } %>
+                <% }) %>
+            <% } %>
+        </div>
     </div>
     <script>
         let password = document.getElementById("password");
@@ -45,6 +94,7 @@
             if(password.value === "admin") {
                 container.classList.add("disabled");
                 container2.classList.remove("disabled");
+                container2.classList.add("container2")
             }
         }
     </script>
