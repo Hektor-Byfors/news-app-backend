@@ -6,6 +6,7 @@ const cors = require("cors");
 const app = express();
 app.set("view engine", "ejs");
 app.use(cors());
+app.use(express.json());
 const port = 3001;
 const dbURI = "mongodb+srv://nodeDB:Nlfr7lsygbMhdcBb@nodedb.0wfhner.mongodb.net/nodeNewsLetter?retryWrites=true&w=majority"
 
@@ -55,4 +56,9 @@ app.get("/users", (req, res) => {
         console.log(err);
         res.send("error has occurred:" + err);
     })
+})
+
+app.post("/create-user", (req, res) => {
+    let user = req.body
+    res.send(user);
 })
