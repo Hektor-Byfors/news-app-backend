@@ -17,24 +17,6 @@ mongoose.connect(dbURI)
     })
     .catch((err) => console.log(err));
 
-
-//mongoose route
-app.get("/add-user", (req, res) => {
-    const user = new User({
-        email: "usernumber2@email.com",
-        password: "New password",
-        newsLetterSub: false
-    });
-
-    user.save()
-        .then((result) => {
-            res.send(result)
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-});
-
 app.get("/", (req, res) => {
     User.find()
     .then((result) => {
@@ -59,6 +41,17 @@ app.get("/users", (req, res) => {
 })
 
 app.post("/create-user", (req, res) => {
-    let user = req.body
-    res.send(user);
+    let user = new User({
+        email: req.body.email,
+        password: req.body.password,
+        newsLetterSub: req.body.newsLetterSub
+    });
+
+    user.save()
+        .then((result) => {
+            res.send(result)
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 })
