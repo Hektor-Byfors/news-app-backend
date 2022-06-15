@@ -29,7 +29,6 @@ app.get("/", (req, res) => {
 });
 
 app.get("/users", (req, res) => {
-    
     User.find()
     .then((result) => {
         res.send(result);
@@ -54,4 +53,25 @@ app.post("/create-user", (req, res) => {
         .catch((err) => {
             console.log(err);
         });
+}) 
+
+app.put("/users/:id", (req, res) => {
+    User.findOneAndUpdate(
+        {
+            _id: req.params.id
+        },
+        {
+            newsLetterSub: req.body.newsLetterSub
+        },
+        ((err) => {
+            if(err) {
+                console.log(err);
+            };
+        })
+    )
+    
+    User.findById(req.params.id)
+    .then((result) => {
+        res.send(result)
+    })
 })
